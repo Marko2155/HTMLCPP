@@ -1,25 +1,39 @@
 //HTMLCPP code
 #include <string>
 #include <fstream>
+#include <iostream>
 
 class HTML {
 public:
-    void add_to_page_body(std::string Element);
-    void output_to_file(std::string FileName);
-    std::string html_code();
+    void addElement(std::string Element);
+    void outputToFile(std::string FileName);
+    void addJS(std::string JS[]);
+    std::string showHTMLCode();
 protected:
     std::string Code;
 };
 
-std::string HTML::html_code() {
+void HTML::addJS(std::string JS[]) {
+    Code.append("<script>\n");
+    for (int i = 0; i < JS->length(); i++) {
+        Code.append(JS[i] + "\n");
+    }
+    Code.append("</script>\n");
+}
+
+std::string HTML::showHTMLCode() {
     return Code;
 }
 
-void HTML::add_to_page_body(std::string Element) {
-    Code.append(Element + "\n");
+void HTML::addElement(std::string Element) {
+    if (!Element.find("<script>")) {
+        std::cout << "[HTMLCPP] You have tried to manually add a script to the page. Use HTML::add_script_to_page(std::string javascript) to add a script beside the HTML page." << std::endl;
+    } else {
+        Code.append(Element + "\n");
+    }
 }
 
-void HTML::output_to_file(std::string Filename) {
+void HTML::outputToFile(std::string Filename) {
     std::ofstream htmlFile(Filename);
     htmlFile << Code;
     htmlFile.close();
@@ -32,8 +46,10 @@ void HTML::output_to_file(std::string Filename) {
 
 int main() {
     HTML htmlObject;
-    htmlObject.add_to_page_body("<h1>hi</h1>");
-    htmlObject.output_to_file("example.html");
+    std::string js[] = {"var hi = document.getElementById('hi')", "hi.innerText = 'hello c++!'"};
+    htmlObject.addElement("<h1 id=\"hi\">hi</h1>");
+    htmlObject.addJS(js);
+    htmlObject.outputToFile("example.html");
     std::system("open example.html"); // change 'open' depending on your system, mine is MacOS, so i use open
     return 0;
 }
