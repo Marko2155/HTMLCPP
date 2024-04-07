@@ -4,4 +4,6 @@ project(cpp_html)
 set(CMAKE_CXX_STANDARD 98)
 
 add_executable(cpp_html main.cpp
+        html.h
+        html.cpp
 )
