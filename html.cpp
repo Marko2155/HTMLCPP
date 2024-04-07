@@ -3,11 +3,12 @@
 
 
 void HTML::addJS(std::string JS[]) {
-    Code.append("<script>\n");
+    std::ofstream jsfile("main.js");
+    Code.append("<script src=\"main.js\"></script>");
     for (int i = 0; i < JS->length(); i++) {
-        Code.append(JS[i] + "\n");
+        jsfile << JS[i] << std::endl;
     }
-    Code.append("</script>\n");
+    jsfile.close();
 }
 
 std::string HTML::showHTMLCode() {
@@ -26,4 +27,13 @@ void HTML::outputToFile(std::string Filename) {
     std::ofstream htmlFile(Filename);
     htmlFile << Code;
     htmlFile.close();
+}
+
+void HTML::addCSS(std::string CSS[]) {
+    std::ofstream cssfile("style.css");
+    Code.insert(0, "<link rel=\"stylesheet\" href=\"style.css\"></style>");
+    for (int i = 0; i < CSS->length(); i++) {
+        cssfile << CSS[i] << std::endl;
+    }
+    cssfile.close();
 }
