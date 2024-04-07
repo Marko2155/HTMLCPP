@@ -31,7 +31,7 @@ void HTML::outputToFile(std::string Filename) {
 
 void HTML::addCSS(std::string CSS[]) {
     std::ofstream cssfile("style.css");
-    Code.insert(0, "<link rel=\"stylesheet\" href=\"style.css\"></style>");
+    Code.insert(0, "<link rel=\"stylesheet\" href=\"style.css\">");
     for (int i = 0; i < CSS->length(); i++) {
         cssfile << CSS[i] << std::endl;
     }
