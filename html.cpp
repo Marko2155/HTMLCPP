@@ -1,6 +1,8 @@
 #include "html.h"
 
-
+void HTML::clearCode() {
+    Code.clear();
+}
 
 void HTML::addJS(std::string JS[]) {
     if (Name == "") {

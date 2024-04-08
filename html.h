@@ -9,6 +9,7 @@ public:
     void addJS(std::string JS[]);
     void addCSS(std::string CSS[]);
     void setName(std::string Name);
+    void clearCode();
     std::string showHTMLCode();
 protected:
     std::string Code;
