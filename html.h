@@ -5,10 +5,12 @@
 class HTML {
 public:
     void addElement(std::string Element);
-    void outputToFile(std::string FileName);
+    void outputToFile();
     void addJS(std::string JS[]);
     void addCSS(std::string CSS[]);
+    void setName(std::string Name);
     std::string showHTMLCode();
 protected:
     std::string Code;
+    std::string Name;
 };
