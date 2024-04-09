@@ -2,6 +2,7 @@
 #include <fstream>
 #include <iostream>
 
+///The HTML class.
 class HTML {
 public:
     void addElement(std::string Element);
